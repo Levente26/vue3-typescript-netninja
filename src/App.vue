@@ -8,27 +8,44 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive, toRefs, ref } from "vue";
 
 export default defineComponent({
   name: "App",
   components: {},
-  data() {
+  setup() {
+    // const state = reactive({
+    //   name: 'Link',
+    //   age: 25 as string | number
+    // });
+    // state.name = 999 cannot change type
+
+    const name = ref('Yoshi');
+    const age = ref<number | string>(25);
+
+    age.value = 30;
+
     return {
-      name: 'Link',
-      age: 25 as number | string,
-    };
+      // ...toRefs(state),
+      name, age
+    }
   },
-  methods: {
-    changeName(name: string) {
-      this.name = name;
-      return name;
-    },
-    changeAge(age: string | number) {
-      this.age = age;
-      return age;
-    },
-  }
+  // data() {
+  //   return {
+  //     name: 'Link',
+  //     age: 25 as number | string,
+  //   };
+  // },
+  // methods: {
+  //   changeName(name: string) {
+  //     this.name = name;
+  //     return name;
+  //   },
+  //   changeAge(age: string | number) {
+  //     this.age = age;
+  //     return age;
+  //   },
+  // }
 });
 </script>
 
